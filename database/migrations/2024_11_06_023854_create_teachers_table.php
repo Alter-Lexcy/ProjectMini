@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name_teacher');
             $table->string('NIP');
             $table->string('email_teacher');
-            $table->string('number_teacher');   
+            $table->string('number_teacher');
             $table->timestamps();
         });
     }
