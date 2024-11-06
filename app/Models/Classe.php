@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Classes extends Model
+class Classe extends Model
 {
     protected $fillable =[
         'name',
@@ -19,7 +19,7 @@ class Classes extends Model
     public function Modul(){
         return $this->hasMany(Modul::class);
     }
-    public function Exams(){
-        return $this->hasMany(Exams::class,);
+    public function Exam(){
+        return $this->hasMany(Exam::class,);
     }
 }
