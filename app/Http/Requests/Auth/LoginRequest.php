@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Lockout;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -32,6 +33,16 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'email.required'=>'email Belum Di-isi',
+            'email.email'=>'email Berformat Email',
+            'password.required'=>'Password Belum Di-isi',
+            'password.string'=>'Password Harus Berformat Huruf'
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *
@@ -41,16 +52,25 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        // Cek apakah akun ada berdasarkan email
+        if (! User::where('email', $this->input('email'))->exists()) {
+            throw ValidationException::withMessages([
+                'email' => 'Akun dengan email ini tidak ditemukan. Silakan periksa kembali atau daftar akun baru.',
+            ]);
+        }
+
+        // Jika email ditemukan, lanjutkan ke autentikasi
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => 'Password yang Anda masukkan salah. Silakan coba lagi.',
             ]);
         }
 
         RateLimiter::clear($this->throttleKey());
     }
+
 
     /**
      * Ensure the login request is not rate limited.

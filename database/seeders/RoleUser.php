@@ -21,7 +21,7 @@ class RoleUser extends Seeder
         $admin = User::create([
             'name'=>'Guru',
             'email'=>'guru123@gmail.com',
-            'password'=>Hash::make('12345679')
+            'password'=>Hash::make('123456789')
         ]);
 
         $admin->assignRole($roleadmin);

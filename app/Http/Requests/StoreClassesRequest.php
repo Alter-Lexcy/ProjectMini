@@ -11,7 +11,7 @@ class StoreClassesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class StoreClassesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>['required','string','max:255'],
+            'descripton'=>['nullable'],
+            'teacher_id'=>['required']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required'=>'Nama Belum Di-isi',
+            'name.string'=>'Nama Harus Berformat huruf',
+            'name.max'=>'Nama Melebihi Batas',
+            'teacher_id.required'=>'Guru Belum Di-pilih'
         ];
     }
 }

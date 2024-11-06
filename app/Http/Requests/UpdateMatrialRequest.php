@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateMatrialRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateMatrialRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,24 @@ class UpdateMatrialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'module_id'=>['required'],
+            'title'=>['required','string','max:255',Rule::unique('materials','title')->ignore($this->route('materials'))],
+            'content'=>['nullable'],
+            'photo'=>['required','image','size:2048']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'module_id.required'=>'Modul Belum Di-isi',
+            'title.required'=>'Judul Belum Di-isi',
+            'title.string'=>'Judul Harus Berformat Huruf',
+            'title.max'=>'Judul Melebihi Batas',
+            'title.unique'=>'Judul Sudah Ada',
+            'photo.required'=>'Foto Belum Di-isi',
+            'photo.image'=>'Foto Berformat Gambar',
+            'photo.size'=>'Foto Melebihi Batas',
         ];
     }
 }

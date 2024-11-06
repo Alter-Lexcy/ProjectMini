@@ -11,7 +11,7 @@ class StoreCommentsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreCommentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id'=>['required'],
+            'assignment_id'=>['required'],
+            'exam_id'=>['required'],
+            'content'=>['required',]
+        ];
+    }
+    public function messages()
+    {
+        return[
+            'user_id.required'=>'User Belum Di-pilih',
+            'assignment_id.required'=>'Tugas Belum Di-pilih',
+            'exam_id.required'=>'Ujian Belum Di-pilih',
+            'content.required'=>'Konten Komen Belum Di-isi'
         ];
     }
 }
