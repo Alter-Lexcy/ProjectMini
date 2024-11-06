@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Exams extends Model
+class Exam extends Model
 {
     protected $fillable =[
         'class_id',
@@ -13,10 +13,10 @@ class Exams extends Model
         'description'
     ];
 
-    public function Clases(){
-        return $this->belongsTo(Classes::class,'class_id');
+    public function Classe(){
+        return $this->belongsTo(Classe::class,'class_id');
     }
-    public function Comments(){
-        return $this->hasMany('Comments');
+    public function Comment(){
+        return $this->hasMany(Comment::class);
     }
 }

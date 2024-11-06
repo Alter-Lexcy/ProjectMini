@@ -13,7 +13,7 @@ class Teacher extends Model
         'number_teacher'
     ];
 
-    public function class(){
-        return $this->hasMany(Classes::class);
+    public function classe(){
+        return $this->hasMany(Classe::class);
     }
 }

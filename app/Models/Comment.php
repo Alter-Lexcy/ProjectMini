@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comments extends Model
+class Comment extends Model
 {
     protected $fillable=[
         'user_id',
@@ -16,11 +16,11 @@ class Comments extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function Assignments(){
-        return $this->belongsTo(Assignments::class,'assignment');
+    public function Assignment(){
+        return $this->belongsTo(Assignment::class,'assignment');
     }
 
-    public function Exams(){
-        return $this->belongsTo(Exams::class,'exam_id');
+    public function Exam(){
+        return $this->belongsTo(Exam::class,'exam_id');
     }
 }

@@ -12,11 +12,11 @@ class Modul extends Model
         'description'
     ];
 
-    public function Classes(){
-        return $this->belongsTo(Classes::class,'class_id');
+    public function Classe(){
+        return $this->belongsTo(Classe::class,'class_id');
     }
-    public function Assignments(){
-        return $this->hasMany(Assignments::class);
+    public function Assignment(){
+        return $this->hasMany(Assignment::class);
     }
     public function Material(){
         return $this->hasMany(Material::class);
