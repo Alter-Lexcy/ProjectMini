@@ -13,8 +13,8 @@ class Exam extends Model
         'description'
     ];
 
-    public function Classe(){
-        return $this->belongsTo(Classe::class,'class_id');
+    public function Class(){
+        return $this->belongsTo(Classes::class,'class_id');
     }
     public function Comment(){
         return $this->hasMany(Comment::class);
