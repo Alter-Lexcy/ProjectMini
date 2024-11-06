@@ -13,7 +13,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers = Teacher::all();
+        return view('teachers.index', compact('teachers'));
     }
 
     /**
@@ -21,7 +22,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teachers.create');
     }
 
     /**
@@ -29,7 +30,8 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
-        //
+        Teacher::create($request->validated());
+        return redirect()->route('teachers.index')->with('Sukses','Guru Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -45,7 +47,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('teachers.edit', compact('teacher'));
     }
 
     /**
@@ -53,7 +55,8 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $teacher->update($request->validated());
+        return redirect()->route('teachers.index')->with('Sukses','Data Guru Berhasil Diperbarui');
     }
 
     /**
@@ -61,6 +64,12 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        try {
+            $teacher->delete();
+
+            return redirect()->route('teachers.index')->with('Sukses','Data Guru Berhasil Dihapus');
+        } catch (\Exception $e) {
+            return redirect()->route('teachers.index')->with('Gagal','Data Guru Gagal Dihapus');
+        }
     }
 }
