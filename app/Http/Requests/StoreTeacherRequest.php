@@ -11,7 +11,7 @@ class StoreTeacherRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,30 @@ class StoreTeacherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_teacher'=>['required','unique:teachers,name_teacher','string','max:255'],
+            'NIP'=>['required','numeric','max:18','unique:teachers,NIP'],
+            'email.teacher'=>['required','email','max:255'],
+            'number_teacher'=>['required','numeric','max:13','unique:teachers,number_teacher']
+        ];
+    }
+    public function messages()
+    {
+        return[
+            'name_teacher.required'=>'Nama Guru Belum Di-isi',
+            'name_teacher.string'=>'Nama Guru Harus Berformat Huruf',
+            'name_teacher.max'=>'Nama Guru Melebihi Batas',
+            'name_teacher.unique'=>'Nama Guru Sudah Ada',
+            'NIP.required'=>'NIP Belum Di-isi',
+            'NIP.numeric'=>'NIP Harus Berformat Angka',
+            'NIP.max'=>'NIP Melebihi Batas',
+            'NIP.unique'=>'NIP Sudah Ada',
+            'email.required'=>'Email Belum Di-isi',
+            'email.max'=>'Email Melebihi Batas',
+            'email.email'=>'Email Berformat Emial',
+            'number_teacher.required'=>'Nomer Guru Belum Di-isi',
+            'number_teacher.numeric'=>'Nomer Guru Harus Berformat Angka',
+            'number_teacher.max'=>'Nomer Guru Melebihi Batas',
+            'number_teacher.unique'=>'Nomer Guru Sudah Ada',
         ];
     }
 }

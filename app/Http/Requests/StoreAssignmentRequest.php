@@ -11,7 +11,7 @@ class StoreAssignmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class StoreAssignmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'module_id'=>['required'],
+            'title'=>['required','string','max:255', 'unique:assignments,title'],
+            'description'=>['nullable'],
+            'date_collection'=>['required','date']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'module_id.required'=>'Modul Belum Di-isi',
+            'title.required'=>'Judul Belum Di-isi',
+            'title.string'=>'Judul Harus Beformat huruf',
+            'title.max'=>'Judul melebihi Batas',
+            'title.unique'=>'Judul Sudah Ada',
+            'date_collection.required'=>'Tanggal Pengumpulan Belum Di-isi',
+            'date_collection.date'=>'Tanggal Pengumpulan Harus Berformat',
         ];
     }
 }

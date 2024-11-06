@@ -27,4 +27,18 @@ class ProfileUpdateRequest extends FormRequest
             ],
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required'=>'Nama Belum Di-isi',
+            'name.string'=>'Nama harus Berformat Huruf',
+            'name.max'=>'Nama Melewati Terlalu Panjang',
+            'email.required'=>'Email Belum Di-isi',
+            'email.string'=>'Email Berformat Huruf',
+            'email.email'=>'Email Harus berformat Email',
+            'email.lowercase'=>'Email Harus Berhuruf kecil',
+            'email.max'=>'Nama Email Melewati Batas',
+            'email.unique'=>'Email Sudah Ada'
+        ];
+    }
 }
