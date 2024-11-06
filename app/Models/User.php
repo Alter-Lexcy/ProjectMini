@@ -51,8 +51,8 @@ class User extends Authenticatable
         parent::boot();
 
         static::created(function($user){
-            $rolemurid = Role::firstOrCreate(['name'=>'murid']);
-            $user->assignRole($rolemurid);
+            $murid = Role::firstOrCreate(['name'=>'murid']);
+            $user->assignRole($murid);
         });
     }
 }
