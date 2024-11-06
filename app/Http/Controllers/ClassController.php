@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClassesRequest;
+use App\Http\Requests\UpdateClassesRequest;
+use App\Models\Classes;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
@@ -11,7 +14,8 @@ class ClassController extends Controller
      */
     public function index()
     {
-        //
+        $classes = Classes::all();
+        return view('classes.index', compact('classes'));
     }
 
     /**
@@ -19,15 +23,16 @@ class ClassController extends Controller
      */
     public function create()
     {
-        //
+        return view('classes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClassesRequest $request)
     {
-        //
+        Classes::create($request->validated());
+        return redirect()->route('classes.index')->with('Sukses','Kelas Baru Berhasil Ditambahkn');
     }
 
     /**
@@ -41,24 +46,31 @@ class ClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Classes $class)
     {
-        //
+        return view('classes.edit', compact('class'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateClassesRequest $request, Classes $classes)
     {
-        //
+        $classes->update($request->validated());
+        return redirect()->route('classes.index')->with('Sukses','Kelas Berhasil Diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Classes $class)
     {
-        //
+        try {
+            $class->delete();
+
+            return redirect()->route('classes.index')->with('Sukses','Kelas Berhasil Dihapus');
+        } catch (\Exception $e) {
+            return redirect()->route('classes.index')->with('Gagal','Kelas Masih Berhubungan Dengan Tabel Lain');
+        }
     }
 }

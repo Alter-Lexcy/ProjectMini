@@ -69,7 +69,7 @@ class TeacherController extends Controller
 
             return redirect()->route('teachers.index')->with('Sukses','Data Guru Berhasil Dihapus');
         } catch (\Exception $e) {
-            return redirect()->route('teachers.index')->with('Gagal','Data Guru Gagal Dihapus');
+            return redirect()->route('teachers.index')->with('Gagal','Data Masih Berhubungan Dengan Tabel Lain');
         }
     }
 }

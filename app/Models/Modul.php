@@ -12,8 +12,8 @@ class Modul extends Model
         'description'
     ];
 
-    public function Classe(){
-        return $this->belongsTo(Classe::class,'class_id');
+    public function Class(){
+        return $this->belongsTo(Classes::class,'class_id');
     }
     public function Assignment(){
         return $this->hasMany(Assignment::class);
