@@ -1,8 +1,8 @@
 <x-guest-layout>
     <div class="h-screen md:flex">
         <div
-            class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center hidden">
-
+            class="relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
+            style="background-image: url('img/background-login.png'); background-size: cover; background-position: center;">
             <!-- Logo Smart-Lab di pojok kiri atas -->
             <div class="absolute top-0 left-0 p-2 z-10">
                 <img src="img/SMART-LAB (DARK MODE).png" alt="LOGO SMART-LAB" class="w-64">
@@ -38,7 +38,7 @@
                         <input id="name"
                             class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none" type="text"
                             name="name" :value="old('name')" autofocus placeholder="Nama" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
                     <!-- Email -->
@@ -51,7 +51,7 @@
                         <input id="email"
                             class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none" type="email"
                             name="email" :value="old('email')" placeholder="Email" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                         <input id="password"
                             class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none" type="password"
                             name="password" placeholder="Password" />
-                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Confirm Password -->
@@ -84,7 +84,7 @@
                         <input id="password_confirmation"
                             class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none" type="password"
                             name="password_confirmation" placeholder="Konfirmasi Password" />
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                 </div>
 
