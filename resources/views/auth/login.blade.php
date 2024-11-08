@@ -4,7 +4,8 @@
 
     <div class="h-screen md:flex">
         <div
-            class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center hidden">
+            class="relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
+            style="background-image: url('img/background-login.png'); background-size: cover; background-position: center;">
 
             <!-- Logo Smart-Lab di pojok kiri atas -->
             <div class="absolute top-0 left-0 p-2 z-10">
