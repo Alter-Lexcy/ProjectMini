@@ -22,9 +22,9 @@ class StoreCommentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>['required'],
-            'assignment_id'=>['required'],
-            'exam_id'=>['required'],
+            'teacher_id'=>['required','exists:teachers,id'],
+            'assignment_id'=>['required','exists:assignments,id'],
+            'exam_id'=>['required','exists:exams,id'],
             'content'=>['required',]
         ];
     }

@@ -22,7 +22,7 @@ class StoreAssignmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'module_id'=>['required'],
+            'module_id'=>['required','exists:modules,id'],
             'title'=>['required','string','max:255', 'unique:assignments,title'],
             'description'=>['nullable'],
             'date_collection'=>['required','date']

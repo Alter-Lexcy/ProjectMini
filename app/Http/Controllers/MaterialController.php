@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMaterialRequest;
+use App\Http\Requests\UpdateMaterialRequest;
 use App\Http\Requests\UpdateMatrialRequest;
 use App\Models\Material;
 use Illuminate\Http\Request;
@@ -54,7 +55,7 @@ class MaterialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMatrialRequest $request, Material $material)
+    public function update(UpdateMaterialRequest $request, Material $material)
     {
         $material->update($request->validated());
         return redirect()->route('materials.index')->with('Mateial Berhasil Diperbarui');

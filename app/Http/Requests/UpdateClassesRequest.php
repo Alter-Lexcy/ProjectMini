@@ -24,7 +24,7 @@ class UpdateClassesRequest extends FormRequest
         return [
             'name'=>['required','string','max:255'],
             'descripton'=>['nullable'],
-            'teacher_id'=>['required']
+            'teacher_id'=>['required','exists:teachers,id']
         ];
     }
     public function messages()
