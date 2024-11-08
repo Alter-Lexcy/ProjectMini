@@ -22,7 +22,7 @@
         <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
             <form method="POST" action="{{ route('register') }}" class="bg-white w-full max-w-lg">
                 @csrf
-                <h1 class="text-gray-800 font-bold text-2xl mb-1">Register</h1>
+                <h1 class="text-gray-800 font-bold text-2xl mb-1">Daftar</h1>
                 <p class="text-sm font-normal text-gray-600 mb-7">Daftarkan diri anda dan buat akun sekarang juga!</p>
 
                 <!-- Name and Email (full width) -->
@@ -92,7 +92,7 @@
                 <!-- Register Button -->
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button class="ms-4">
-                        {{ __('Register') }}
+                        {{ __('Daftar') }}
                     </x-primary-button>
                 </div>
 
@@ -100,7 +100,7 @@
                     <p class="text-sm text-gray-600">
                         Sudah punya akun?
                         <a href="{{ route('login') }}" class="text-blue-600 hover:text-blue-800 font-semibold">
-                            Log in sekarang!
+                            Masuk sekarang!
                         </a>
                     </p>
                 </div>
