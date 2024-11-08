@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentsRequest;
+use App\Http\Requests\UpdateCommentsRequest;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -11,7 +14,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::with(['teachers','assignments','exams'])->get();
+        return view('comments.index',compact('comments'));
     }
 
     /**
@@ -25,9 +29,11 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCommentsRequest $request)
     {
-        //
+        Comment::create($request->validated());
+
+        return redirect()->route('comments.index')->with('Sukses','Data Berhasil Ditambah');
     }
 
     /**
@@ -49,16 +55,24 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCommentsRequest $request, Comment $comment)
     {
-        //
+        $comment->update($request->validated());
+
+        return redirect()->route('comments.index')->with('Sukses','Data Berhasil Diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comment $comment)
     {
-        //
+        try {
+
+        return redirect()->route('Comments.index')->with('Sukses','Data Berhasil Dihapus');
+        } catch (\Exception $e) {
+
+        return redirect()->route('Comments.index')->with('Sukses','Data Gagal Dihapus');
+        }
     }
 }

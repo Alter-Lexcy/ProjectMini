@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreModulRequest;
+use App\Http\Requests\UpdateModulRequest;
+use App\Models\Classes;
 use App\Models\Modul;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,8 @@ class ModulController extends Controller
      */
     public function index()
     {
-        $moduls = Modul::with('classes')->get();
+        $modules = Modul::with('classes')->get();
+        return view('modules.index', compact('modules'));
     }
 
     /**
@@ -26,9 +30,10 @@ class ModulController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreModulRequest $request)
     {
-        //
+        Modul::create($request->validated());
+        return redirect()->route('modules.index')->with('Sukses', 'Data Modul Baru Berhasil Ditambahkan');
     }
 
     /**
@@ -50,16 +55,22 @@ class ModulController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateModulRequest $request, Modul $modul)
     {
-        //
+        $modul->update($request->validated());
+        return redirect()->route('modules.update')->with('Sukses','Data Modul Berhasil Diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Modul $modul)
     {
-        //
+        try {
+            $modul->delete();
+            return redirect()->route('modules.index')->with('Sukses','Data Berhasil Dihapus');
+        } catch (\Exception $e) {
+            return redirect()->route('modules.index')->with('Gagal','Data Gagal Dihapus');
+        }
     }
 }
