@@ -23,7 +23,7 @@ class UpdateAssignmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'module_id'=>['required'],
+            'module_id'=>['required','exists:Assignments,id'],
             'title'=>['required','string','max:255', Rule::unique('assignments','title')->ignore($this->route('assignments'))],
             'description'=>['nullable'],
             'date_collection'=>['required','date']

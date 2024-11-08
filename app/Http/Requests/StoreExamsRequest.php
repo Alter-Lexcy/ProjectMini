@@ -22,7 +22,7 @@ class StoreExamsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'class_id'=>['required'],
+            'class_id'=>['required','exists:exams,id'],
             'title'=>['required','string','max:255','unique:exams,title'],
             'date_exam'=>['required','date'],
             'description'=>['nullable']

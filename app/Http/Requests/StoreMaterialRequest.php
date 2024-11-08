@@ -22,7 +22,7 @@ class StoreMaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'module_id'=>['required'],
+            'module_id'=>['required|exists:modules,id'],
             'title'=>['required','string','max:255','unique:materials,title'],
             'content'=>['nullable'],
             'photo'=>['required','image','size:2048']

@@ -22,7 +22,7 @@ class StoreModulRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'class_id'=>['required'],
+            'class_id'=>['required','exists:modules,id'],
             'title'=>['required','string','max:255','unique:modules,title'],
             'description'=>['nullable']
         ];

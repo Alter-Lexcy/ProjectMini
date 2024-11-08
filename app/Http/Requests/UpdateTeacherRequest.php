@@ -25,7 +25,7 @@ class UpdateTeacherRequest extends FormRequest
         return [
             'name_teacher'=>['required','string','max:255',Rule::unique('teachers','name_teacher')->ignore($this->route('teachers'))],
             'NIP'=>['required','numeric','max:18',Rule::unique('teachers','NIP')->ignore($this->route('teachers'))],
-            'email_teacher'=>['required','email','max:255',Rule::unique('teacher','email')],
+            'email_teacher'=>['required','email','max:255',Rule::unique('teacher','email')->ignore($this->email)],
             'number_teacher'=>['required','numeric','max:13',Rule::unique('teachers','number_teacher')->ignore($this->route('teachers'))]
         ];
     }

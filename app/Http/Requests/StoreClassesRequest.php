@@ -22,9 +22,9 @@ class StoreClassesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required','string','max:255'],
+            'name'=>['required','string','max:255','unique:classes,name,except,id'],
             'descripton'=>['nullable'],
-            'teacher_id'=>['required']
+            'teacher_id'=>['required','exists:teachers,id']
         ];
     }
     public function messages()

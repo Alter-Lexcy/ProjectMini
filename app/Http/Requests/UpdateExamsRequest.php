@@ -23,7 +23,7 @@ class UpdateExamsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'class_id'=>['required'],
+            'class_id'=>['required','exists:classes,id'],
             'title'=>['required','string','max:255',Rule::unique('exams','title')->ignore($this->route('exams'))],
             'date_exam'=>['required','date'],
             'description'=>['nullable']

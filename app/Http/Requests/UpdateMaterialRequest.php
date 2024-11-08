@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateMatrialRequest extends FormRequest
+class UpdateMaterialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class UpdateMatrialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'module_id'=>['required'],
+            'module_id'=>['required','exists:modules,id'],
             'title'=>['required','string','max:255',Rule::unique('materials','title')->ignore($this->route('materials'))],
             'content'=>['nullable'],
             'photo'=>['required','image','size:2048']
