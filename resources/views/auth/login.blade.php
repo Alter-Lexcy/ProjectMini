@@ -3,8 +3,7 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="h-screen md:flex">
-        <div
-            class="relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
+        <div class="relative overflow-hidden md:flex w-1/2 justify-around items-center hidden"
             style="background-image: url('img/background-login.png'); background-size: cover; background-position: center;">
 
             <!-- Logo Smart-Lab di pojok kiri atas -->
@@ -17,8 +16,7 @@
             <div class="flex justify-center items-center w-full h-full">
                 <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
                 <dotlottie-player src="https://lottie.host/f256ae59-5457-4979-9aaa-4e825312fbfd/Ycwn8A8gFH.json"
-                    background="transparent" speed="1" style="width: 450px;" loop
-                    autoplay></dotlottie-player>
+                    background="transparent" speed="1" style="width: 450px;" loop autoplay></dotlottie-player>
             </div>
         </div>
         <!-- Main form section -->
@@ -40,7 +38,7 @@
                     <input class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none text-lg py-3"
                         type="email" name="email" placeholder="Email" :value="old('email')" autofocus
                         autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
                 {{-- Password --}}
@@ -52,10 +50,20 @@
                             d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
                             clip-rule="evenodd" />
                     </svg>
-                    <input class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none text-lg py-3"
+                    <input id="passwordInput"
+                        class="pl-2 outline-none border-none w-full focus:ring-0 focus:border-none text-lg py-3"
                         type="password" name="password" placeholder="Password" autocomplete="current-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <button type="button" onclick="togglePasswordVisibility()">
+                        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 text-gray-400 cursor-pointer" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 3C5.58 3 2 6.58 2 10s3.58 7 8 7 8-3.58 8-7-3.58-7-8-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+                            <path d="M10 8a2 2 0 110 4 2 2 0 010-4z" />
+                        </svg>
+                    </button>
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
+
 
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button>
@@ -75,3 +83,17 @@
         </div>
     </div>
 </x-guest-layout>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("passwordInput");
+        const eyeIcon = document.getElementById("eyeIcon");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.setAttribute("d", "M10 3C5.58 3 2 6.58 2 10s3.58 7 8 7 8-3.58 8-7-3.58-7-8-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"); // Gambar mata terbuka
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
