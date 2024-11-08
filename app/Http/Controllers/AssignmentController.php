@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Assignment;
 
 class AssignmentController extends Controller
 {
@@ -11,7 +12,8 @@ class AssignmentController extends Controller
      */
     public function index()
     {
-        //
+        $assignments = Assignment::all(); 
+        return view('Admins.Assignments.index', compact('assignments'));
     }
 
     /**
