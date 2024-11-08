@@ -25,7 +25,7 @@
         <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
             <form method="POST" action="{{ route('login') }}" class="bg-white w-full max-w-md">
                 @csrf
-                <h1 class="text-gray-800 font-bold text-2xl mb-1">Login</h1>
+                <h1 class="text-gray-800 font-bold text-2xl mb-1">Masuk</h1>
                 <p class="text-sm font-normal text-gray-600 mb-7">Masukkan akun anda sesuai dengan email dan password
                     yang benar!</p>
 
@@ -59,7 +59,7 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button>
-                        {{ __('Log in') }}
+                        {{ __('Masuk') }}
                     </x-primary-button>
                 </div>
 
